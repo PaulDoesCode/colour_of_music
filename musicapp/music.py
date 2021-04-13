@@ -39,10 +39,11 @@ b.get_light(1, 'on')
 # get light name
 b.get_light(1, 'name')
 
-# 0-65535 hue scale for hue
+# 0-65535 hue scale for hue lightbulb
+# 0-254 brightness scale for hue lightbulb
 # set initial light brightness and hue
-#b.set_light(1, 'bri', 254)
-#b.set_light(1, 'hue', math.floor(50))
+b.set_light(1, 'bri', 254)
+b.set_light(1, 'hue', math.floor(50))
 
 # initialise search result variables for music search
 result1 = None
