@@ -30,7 +30,7 @@ b.connect()
 # get API info from Bridge
 b.get_api()
 
-# turn light on
+# turn light on if it isn't already on
 b.set_light(1, 'on', True)
 
 # check if light is on or off
