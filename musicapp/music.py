@@ -10,7 +10,6 @@ import math
 from PIL import Image, ImageFilter, ImageTk
 import urllib
 import io
-import requests 
 import vlc
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -103,7 +102,7 @@ def analyseTrack(selectedResult):
 
     # retrieve track preview URL (30 second track preview)
     preview_url=selectedResult["preview_url"]
-    preview = requests.get(preview_url)
+    preview = urllib.request.urlopen(preview_url)
 
     # play 30 second track preview
     player = vlc.MediaPlayer(preview_url)
