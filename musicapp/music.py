@@ -40,8 +40,10 @@ b.get_light(1, 'name')
 
 # 0-65535 hue scale for hue lightbulb
 # 0-254 brightness scale for hue lightbulb
-# set initial light brightness and hue
+# 0-254 saturation scale for hue lightbulb
+# set initial light brightness, saturation, and hue
 b.set_light(1, 'bri', 254)
+b.set_light(1, 'sat', 254)
 b.set_light(1, 'hue', math.floor(50))
 
 # initialise search result variables for music search
@@ -52,25 +54,28 @@ result3 = None
 # function to search for song
 # gets information from text entry field
 # user search will produce 3 search results and each one can be selected
-def txtfldGet():
+def searchForMusic():
     trackObj = spotify.search(txtfld.get(), type="track")
 
     # first search result
+    # result1 = retrieves track information
+    # searchResult1 = retrieves artist and song name from track information, later displayed on-screen
+    # same applies for search results 2 and 3
     global result1 
-    result1 = trackObj["tracks"]["items"][0]
     global searchResult1
+    result1 = trackObj["tracks"]["items"][0]
     searchResult1["text"] = result1["artists"][0]["name"] + "-" + result1["name"]
 
     # second search result
     global result2 
-    result2 = trackObj["tracks"]["items"][1]
     global searchResult2
+    result2 = trackObj["tracks"]["items"][1]
     searchResult2["text"] = result2["artists"][0]["name"] + "-" + result2["name"]
 
     # third search result
     global result3 
-    result3 = trackObj["tracks"]["items"][2]
     global searchResult3
+    result3 = trackObj["tracks"]["items"][2]
     searchResult3["text"] = result3["artists"][0]["name"] + "-" + result3["name"]
 
 # function to analyse track information and produce a result
@@ -121,7 +126,7 @@ def analyseTrack(selectedResult):
     # blue = low energy, positive sound (high valence, low energy)
     # purple = low energy, negative sound (low valence, low energy)
     # Philips uses colour wheel to determine coordinates with a hue scale of 0-65535
-    # use radians to determine colour (hue) choice and attached emotion
+    # use percentages to determine colour (hue) choice and attached emotion
     if valence < 0.5 and energy > 0.5:
         colour = "Red"
         emotion = "Angry"
@@ -129,15 +134,15 @@ def analyseTrack(selectedResult):
     if valence > 0.5 and energy > 0.5:
         colour = "Green"
         emotion = "Happy"
-        b.set_light(1, 'hue', math.floor(65535/3))
+        b.set_light(1, 'hue', math.floor(65535*0.33))
     if valence > 0.5 and energy < 0.5:
         colour = "Blue"
         emotion = "Calm"
-        b.set_light(1, 'hue', math.floor(65535/1.67))
+        b.set_light(1, 'hue', math.floor(65535*0.65))
     if valence < 0.5 and energy < 0.5:
         colour = "Purple"
         emotion = "Sad"
-        b.set_light(1, 'hue', math.floor(65535/1.33))
+        b.set_light(1, 'hue', math.floor(65535*0.75))
     
     # print artist genres
     # print energy and valence values in console
@@ -161,7 +166,7 @@ label = Label(window, text="")
 label.place(x=80, y=10)
 
 # GUI size dimensions
-window.geometry("500x700+10+20")
+window.geometry("500x700")
 
 # display and positioning for the album/single/EP image used
 img = Label(window, image = "")
@@ -176,7 +181,7 @@ txtfld = Entry(window, text ="", bd = 5)
 txtfld.place(x = 120, y = 290)
 
 # display and positioning for the search button
-btn = Button(window, text="Search", command=txtfldGet)
+btn = Button(window, text="Search", command=searchForMusic)
 btn.place(x = 120, y = 330)
 
 # display and positioning for first search result
