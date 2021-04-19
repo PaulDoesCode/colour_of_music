@@ -10,12 +10,14 @@ from phue import Bridge
 class lightData:
     
     # constructor for lightData object
+    # connect to bridge, turn on light and set default light values
     def __init__(self):
         self.bridge = Bridge("192.168.0.73")
         self.bridge.connect()
         self.turnLightOn()
         self.setDefaultHue()
 
+    # function to turn light on upon application startup
     def turnLightOn(self):
         self.bridge.set_light(1, 'on', True)
 

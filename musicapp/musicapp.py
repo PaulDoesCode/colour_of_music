@@ -42,12 +42,12 @@ class musicApp():
         self.img.place(x = 250, y = 130, anchor = "center")
 
         # display and positioning for the track and mapping details
-        self.trackInfoLabel = Label(window, text = "")
-        self.trackInfoLabel.place(x = 120, y = 260)
+        self.trackInfo = Label(window, text = "")
+        self.trackInfo.place(x = 120, y = 260)
 
         # display and positioning for the text entry field
-        self.txtfld = Entry(window, text ="", bd = 5)
-        self.txtfld.place(x = 120, y = 290)
+        self.txtFld = Entry(window, text ="", bd = 5)
+        self.txtFld.place(x = 120, y = 290)
 
         # display and positioning for the search button
         self.btn = Button(window, text="Search", command=self.searchForMusic)
@@ -75,7 +75,7 @@ class musicApp():
     def searchForMusic(self):
         
         # trackObj is an array of tracks gathered from the user search query
-        trackObj = self.spotify.search(self.txtfld.get(), type="track")
+        trackObj = self.spotify.search(self.txtFld.get(), type="track")
 
         # first search result
         # result1 = retrieves track information
@@ -161,7 +161,7 @@ class musicApp():
         print("light - " + colour)   
 
         # used to print track and mapping details on-screen
-        self.trackInfoLabel.config(text = selectedTrackName + " - " + colour + " (" + emotion + ")")
+        self.trackInfo.config(text = selectedTrackName + " - " + colour + " (" + emotion + ")")
 
     # function to end program
     # window.destroy() exits application and closes window
