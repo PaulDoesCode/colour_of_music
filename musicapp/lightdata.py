@@ -13,17 +13,17 @@ class lightData:
     def __init__(self):
         self.bridge = Bridge("192.168.0.73")
         self.bridge.connect()
-        self.bridge.get_api()
-        self.bridge.set_light(1, 'on', True)
-        self.bridge.get_light(1, 'on')
-        self.bridge.get_light(1, 'name')
-        self.bridge.set_light(1, 'bri', 254)
+        self.turnLightOn()
         self.setDefaultHue()
+
+    def turnLightOn(self):
+        self.bridge.set_light(1, 'on', True)
 
     # function to set default hue upon application startup
     def setDefaultHue(self):
         self.bridge.set_light(1, 'hue', 0)
         self.bridge.set_light(1, 'sat', 30)
+        self.bridge.set_light(1, 'bri', 254)
 
     # Valence = X-axis
     # Energy = Y-axis
