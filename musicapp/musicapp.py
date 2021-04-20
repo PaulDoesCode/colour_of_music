@@ -103,7 +103,6 @@ class musicApp():
         self.img.photo_ref = imageFullName
 
         # retrieve track uri, assign to variable
-        # print track uri for testing purposes
         trackUri = selectedResult.trackUri
 
         # retrieve track name, assign to variable
@@ -176,9 +175,6 @@ window = Tk()
 
 # GUI title
 window.title('Colour of Music')
-
-label = Label(window, text="")
-label.place(x=80, y=10)
 
 # GUI size dimensions
 window.geometry("500x700")
