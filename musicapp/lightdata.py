@@ -25,7 +25,7 @@ class lightData:
     def setDefaultHue(self):
         self.bridge.set_light(1, 'hue', 0)
         self.bridge.set_light(1, 'sat', 30)
-        self.bridge.set_light(1, 'bri', 254)
+        self.bridge.set_light(1, 'bri', 255)
 
     # Valence = X-axis
     # Energy = Y-axis
@@ -39,22 +39,22 @@ class lightData:
     # function to set light to red when track is deemed to be "angry"
     def setAngryTrackColour(self):
         self.bridge.set_light(1, 'hue', 0)
-        self.bridge.set_light(1, 'sat', 254)
+        self.bridge.set_light(1, 'sat', 255)
 
     # function to set light to green when track is deemed to be "happy"
     def setHappyTrackColour(self):
         self.bridge.set_light(1, 'hue', math.floor(65535*0.33))
-        self.bridge.set_light(1, 'sat', 254)
+        self.bridge.set_light(1, 'sat', 255)
 
     # function to set light to blue when track is deemed to be "calm"
     def setCalmTrackColour(self):
         self.bridge.set_light(1, 'hue', math.floor(65535*0.65))
-        self.bridge.set_light(1, 'sat', 254)
+        self.bridge.set_light(1, 'sat', 255)
 
     # function to set light to purple when track is deemed to be "sad"
     def setSadTrackColour(self):
         self.bridge.set_light(1, 'hue', math.floor(65535*0.75))
-        self.bridge.set_light(1, 'sat', 254)
+        self.bridge.set_light(1, 'sat', 255)
 
     # function to turn light off when user quits the application
     def turnLightOff(self):
